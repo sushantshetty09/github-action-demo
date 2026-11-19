@@ -1,0 +1,48 @@
+
+name: Ubuntu GitHub Actions Demo
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ubuntu-demo:
+    name: Run on Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Display Ubuntu Information
+        run: |
+          echo "Running on Ubuntu"
+          lsb_release -a
+
+      - name: Check Current Directory
+        run: pwd
+
+      - name: List Files
+        run: ls -la
+
+      - name: Check Installed Tools
+        run: |
+          git --version
+          python3 --version
+          java -version
+
+      - name: Execute Shell Commands
+        run: |
+          echo "Hello from Ubuntu!"
+          mkdir demo-folder
+          cd demo-folder
+          touch hello.txt
+          echo "GitHub Actions Demo" > hello.txt
+          cat hello.txt
+
+      - name: Workflow Completed
+        run: echo "Ubuntu workflow executed successfully!"
+
+
